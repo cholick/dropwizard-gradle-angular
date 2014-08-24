@@ -7,7 +7,7 @@
             console.log('--------------hey');
 
             $routeProvider.when('/', {
-                //controller: 'TodoCtrl',
+                controller: 'TodoController',
                 templateUrl: 'js/templates/test.html'
             });
 

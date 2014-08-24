@@ -11,5 +11,15 @@
 * https://github.com/jankotek/mapdb
 
 
+##### Gradle
+* http://blog.shinetech.com/2014/03/19/javascript-webapps-with-gradle/
+* https://github.com/mcholick/skeletons/tree/master/gradle_jasmine
+
 ##### Angular
 * https://github.com/johnpapa/angularjs-styleguide
+* Run Jasmine unit tests in PhantomJS
+* http://tatiyants.com/how-to-configure-intellij-idea-for-angular-js-testing/
+* https://github.com/tastejs/todomvc/tree/gh-pages/architecture-examples/angularjs
+  * http://todomvc.com/architecture-examples/angularjs/#/active
+* http://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating
+  * http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview

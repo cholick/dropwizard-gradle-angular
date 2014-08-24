@@ -13,6 +13,7 @@
 
 ##### Gradle
 * http://blog.shinetech.com/2014/03/19/javascript-webapps-with-gradle/
+* http://forums.gradle.org/gradle/topics/gradle_js_plugin
 * https://github.com/mcholick/skeletons/tree/master/gradle_jasmine
 
 ##### Angular

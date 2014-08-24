@@ -1,0 +1,19 @@
+apply plugin: 'js'
+
+jshint {
+    tasks.jshint.source = fileTree(
+            dir: 'src/main/resources/assets/js/', include: '*.js'
+    )
+    tasks.jshint.ignoreExitCode = false
+    tasks.jshint.outputToStdOut = true
+    jshint.options = [undef: true]
+    jshint.predef = ['angular': true, 'console': true]
+}
+
+//combineJs {
+//    source = scripts
+//    dest = file("${buildDir}/jshint.out")
+//    reporter = 'checkstyle'
+//    jshint.options = [expr: "true", unused: "true"]
+//}
+

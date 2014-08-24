@@ -5,15 +5,10 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 mainClassName = 'com.cholick.todo.App'
-String springloadedVersion = '1.2.0.RELEASE'
 
 repositories {
     mavenLocal()
     mavenCentral()
-}
-
-configurations {
-    agent
 }
 
 dependencies {
@@ -29,8 +24,10 @@ dependencies {
 
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     testCompile 'io.dropwizard:dropwizard-testing:0.7.1'
+}
 
-    agent "org.springframework:springloaded:${springloadedVersion}"
+run {
+    args = ['server', 'app.yaml']
 }
 
 buildscript {
@@ -42,41 +39,4 @@ buildscript {
     }
 }
 
-run {
-    args = ['server', 'app.yaml']
-    //jvmArgs = ["-javaagent:${new File("$buildDir/agent/springloaded-${springloadedVersion}.jar").absolutePath}", '-noverify']
-}
-
-task runDev(type: JavaExec, dependsOn: classes) {
-    args = ['server', 'app.yaml']
-    main = mainClassName
-    classpath = sourceSets.main.runtimeClasspath
-    jvmArgs = ["-javaagent:${new File("$buildDir/agent/springloaded-${springloadedVersion}.jar").absolutePath}", '-noverify']
-}
-
-task copyAgent(type: Copy) {
-    from configurations.agent
-    into "$buildDir/agent"
-}
-runDev.mustRunAfter copyAgent
-
-apply plugin: 'watch'
-watch {
-    groovy {
-        files files('src/main/groovy')
-        tasks 'compileGroovy'
-    }
-    assets {
-        files files('src/main/resources')
-        tasks 'processResources'
-    }
-}
-
-task watchThread() << {
-    Thread.start {
-        project.tasks.watch.execute()
-    }
-}
-runDev.mustRunAfter watchThread
-
-task dev(dependsOn: [watchThread, copyAgent, runDev])
+apply from: "scripts/dev.gradle"

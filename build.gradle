@@ -40,5 +40,12 @@ buildscript {
     }
 }
 
+apply plugin: 'watch'
+task watchThread() << {
+    Thread.start {
+        project.tasks.watch.execute()
+    }
+}
+
 apply from: 'scripts/dev.gradle'
 apply from: 'scripts/js.gradle'

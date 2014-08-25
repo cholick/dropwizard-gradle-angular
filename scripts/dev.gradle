@@ -21,7 +21,6 @@ task copyAgent(type: Copy) {
 }
 runDev.mustRunAfter copyAgent
 
-apply plugin: 'watch'
 watch {
     groovy {
         files files('src/main/groovy')
@@ -33,11 +32,6 @@ watch {
 //    }
 }
 
-task watchThread() << {
-    Thread.start {
-        project.tasks.watch.execute()
-    }
-}
 runDev.mustRunAfter watchThread
 
 task dev(dependsOn: [watchThread, copyAgent, runDev])

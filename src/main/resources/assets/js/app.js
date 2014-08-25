@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('todoApp', ['ngRoute'])
+//    asdf;
+
+    angular.module('todoApp', ['ngRoute', 'ngResource'])
         .config(function ($routeProvider) {
 
             console.log('--------------hey');

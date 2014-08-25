@@ -18,6 +18,7 @@ class App extends Application<AppConfiguration> {
     @Override
     void initialize(Bootstrap<AppConfiguration> bootstrap) {
         bootstrap.addBundle(new AssetsBundle('/assets/', '/'));
+        bootstrap.addBundle(new AssetsBundle('/test/', '/test'));
         bootstrap.addBundle(new ViewBundle())
     }
 

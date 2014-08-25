@@ -1,19 +1,33 @@
 apply plugin: 'js'
 
+def scripts = fileTree(
+        dir: 'src/main/resources/assets/js/', include: '**/*.js'
+)
+
 jshint {
-    tasks.jshint.source = fileTree(
-            dir: 'src/main/resources/assets/js/', include: '*.js'
-    )
+    tasks.jshint.source = scripts
     tasks.jshint.ignoreExitCode = false
     tasks.jshint.outputToStdOut = true
     jshint.options = [undef: true]
     jshint.predef = ['angular': true, 'console': true]
 }
 
-//combineJs {
-//    source = scripts
-//    dest = file("${buildDir}/jshint.out")
-//    reporter = 'checkstyle'
-//    jshint.options = [expr: "true", unused: "true"]
+watch {
+    assets {
+        files files('src/main/resources')
+        tasks 'processResources'
+    }
+}
+
+//task jsTest(type: com.eriwen.gradle.js.tasks.CombineJsTask) {
+//    source = fileTree(
+//            dir: 'src/main/resources/assets/js/', include: '*.js'
+//    )
+////    source = ["${projectDir}/js/file1.js", "${projectDir}/js/file2.js"]
+//    dest = file("${buildDir}/all-debug.js")
 //}
 
+combineJs {
+    source = scripts
+    dest = file("src/main/resources/test/all.js")
+}

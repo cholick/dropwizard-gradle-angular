@@ -13,3 +13,5 @@ build
 out
 .gradle
 .gradletasknamecache
+
+src/main/resources/test/all.js

@@ -25,6 +25,7 @@ class App extends Application<AppConfiguration> {
     void run(AppConfiguration configuration, Environment environment) throws Exception {
         Injector injector = Guice.createInjector()
 
+        environment.lifecycle().manage(injector.getInstance(Startup))
         environment.healthChecks().register('basic', new BasicHealthCheck())
 
         environment.jersey().urlPattern = '/api/*'

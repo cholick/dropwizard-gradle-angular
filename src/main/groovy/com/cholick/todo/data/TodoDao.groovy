@@ -2,17 +2,28 @@ package com.cholick.todo.data
 
 import com.cholick.todo.domain.Todo
 
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
+
+@com.google.inject.Singleton
 class TodoDao {
 
-    List<Todo> todos = [
-            new Todo(item: 'Buy milk', completed: false),
-            new Todo(item: 'Mail mortgage payment', completed: false),
-            new Todo(item: 'Upload slides', completed: false),
-            new Todo(item: 'Mow lawn', completed: true),
-    ]
+    AtomicInteger sequence = new AtomicInteger(1)
+    ConcurrentHashMap<Integer, Todo> todos = new ConcurrentHashMap()
+
+    Todo create(Todo todo) {
+        todo.id = sequence.incrementAndGet()
+        todos.put(todo.id, todo)
+        return todo
+    }
 
     List<Todo> list() {
-        return todos
+        return todos.values().asList()
+    }
+
+    Todo update(Integer id, Todo todo) {
+        todos.put(id, todo)
+        return todo
     }
 
 }

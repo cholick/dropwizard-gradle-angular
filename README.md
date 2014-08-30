@@ -10,7 +10,6 @@
 * http://java.dzone.com/articles/mapdb-agile-java-data-engine
 * https://github.com/jankotek/mapdb
 
-
 ##### Gradle
 * http://blog.shinetech.com/2014/03/19/javascript-webapps-with-gradle/
 * http://forums.gradle.org/gradle/topics/gradle_js_plugin

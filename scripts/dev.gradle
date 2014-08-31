@@ -26,10 +26,10 @@ watch {
         files files('src/main/groovy')
         tasks 'compileGroovy'
     }
-//    assets {
-//        files files('src/main/resources')
-//        tasks 'processResources'
-//    }
+    assets {
+        files files('src/main/resources')
+        tasks 'processResources'
+    }
 }
 
 runDev.mustRunAfter watchThread

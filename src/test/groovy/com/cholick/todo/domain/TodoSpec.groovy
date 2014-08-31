@@ -19,20 +19,39 @@ class TodoSpec extends Specification {
         Todo invalidTodo = new Todo()
 
         when:
-        Collection<ConstraintViolation> errors =  validator.validate(invalidTodo)
+        Collection<ConstraintViolation> errors = validator.validate(invalidTodo)
+        Set<String> invalidProperties = errors*.propertyPath.toString() as Set
 
         then:
         errors
         errors.size() == 1
-        errors[0].propertyPath as String == 'item'
+
+        and:
+        invalidProperties.contains('item')
+    }
+
+    def 'userId is email'() {
+        given:
+        Todo invalidTodo = new Todo(item: 'Get milk', userId: 'foo')
+
+        when:
+        Collection<ConstraintViolation> errors = validator.validate(invalidTodo)
+        Set<String> invalidProperties = errors*.propertyPath.toString() as Set
+
+        then:
+        errors
+        errors.size() == 1
+
+        and:
+        invalidProperties.contains('userId')
     }
 
     def 'valid todo passes validation'() {
         given:
-        Todo validTodo = new Todo(item: 'Get milk')
+        Todo validTodo = new Todo(item: 'Get milk', userId: 'matt@veryrealemail.com')
 
         when:
-        Collection<ConstraintViolation> errors =  validator.validate(validTodo)
+        Collection<ConstraintViolation> errors = validator.validate(validTodo)
 
         then:
         !errors

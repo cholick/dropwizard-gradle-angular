@@ -1,0 +1,25 @@
+.navbar-default {
+    border-radius: 0;
+}
+
+body {
+    background-image: url('background.jpg');
+}
+
+.todo-table {
+
+}
+
+.todo-table .action-cell {
+    width: 2em;
+}
+
+.todo-table .hover-action {
+    visibility: hidden;
+    cursor: hand;
+    background-color: deeppink;
+}
+
+.todo-table tr:hover .hover-action {
+    visibility: visible;
+}

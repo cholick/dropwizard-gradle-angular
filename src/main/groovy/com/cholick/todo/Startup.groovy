@@ -23,7 +23,7 @@ class Startup implements Managed {
                 new Todo(item: 'Upload slides', completed: false),
                 new Todo(item: 'Mow lawn', completed: true),
         ].each {
-            todoDao.create(it)
+            todoDao.create('matt@veryrealemail.com', it)
         }
     }
 

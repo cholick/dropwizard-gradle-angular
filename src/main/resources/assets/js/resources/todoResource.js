@@ -5,8 +5,10 @@
         .factory('todoResource', todoResource);
 
     function todoResource($resource) {
-        return $resource('/api/todo/:id', null, {
-
+        return $resource('/api/todo/:userId/:id', null, {
+            'update': {
+                method: 'PUT'
+            }
         });
     }
 

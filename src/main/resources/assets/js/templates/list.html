@@ -15,12 +15,7 @@
                                ng-change="save(todo.id, todo)"
                                id="todo-{{$index}}"/>
                     </td>
-                    <td>
-                        <label for="todo-{{$index}}" ng-bind="todo.item"></label>
-                    </td>
-                    <td class="action-cell">
-                        <i class="glyphicon glyphicon-pencil hover-action"></i>
-                    </td>
+                    <td cell-edit cell-edit-value="todo.item"></td>
                     <td class="action-cell">
                         <span class="glyphicon glyphicon-trash hover-action" ng-click="del(todo.id)">&nbsp;</span>
                     </td>

@@ -6,8 +6,17 @@ body {
     background-image: url('background.jpg');
 }
 
-.todo-table {
+.todo-table tr {
+    height: 52px;
+}
 
+.todo-table td {
+    vertical-align: middle !important;
+}
+
+.todo-table .editable {
+    cursor: pointer;
+    padding-right: 5em;
 }
 
 .todo-table .action-cell {
@@ -16,8 +25,7 @@ body {
 
 .todo-table .hover-action {
     visibility: hidden;
-    cursor: hand;
-    background-color: deeppink;
+    cursor: pointer;
 }
 
 .todo-table tr:hover .hover-action {

@@ -11,24 +11,43 @@
             $scope.todos = data.data;
         });
 
-        $scope.yo = function(id) {
+        $scope.yo = function (item, id) {
+            console.log('---------------------yo');
+            console.log(item);
             console.log(id);
+            console.log('---------------------yo');
         };
 
-        $scope.del = function(id) {
-            console.log("--------------removing", id);
-            $scope.todos = _.remove($scope.todos, {id: id});
-//            todoResource.update({
-//                userId: 'matt@veryrealemail.com', id: id
-//            });
+        $scope.updateItem = function (id, item) {
+            var todo = _.find($scope.todos, {id: id});
         };
 
         $scope.save = function (id, todo) {
-            console.log(id);
             todoResource.update({
                 userId: 'matt@veryrealemail.com', id: id
             }, todo);
         };
+
+        $scope.del = function (id) {
+            _.remove($scope.todos, {id: id});
+            todoResource.remove({
+                userId: 'matt@veryrealemail.com', id: id
+            });
+        };
+
+        $scope.$watch('todos', function (newVal, oldVal) {
+            if (newVal && oldVal && oldVal.length) {
+                var hash = {};
+                _.map(oldVal, function (todo) {
+                    hash[todo.id] = todo
+                });
+                _.each(newVal, function (todo) {
+                    if(!angular.equals(todo, hash[todo.id])) {
+                        console.log('vs', todo, hash[todo.id]);
+                    }
+                });
+            }
+        }, true);
 
     }
 

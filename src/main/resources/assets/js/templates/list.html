@@ -2,17 +2,21 @@
     <div class="col-md-6 col-md-offset-3">
 
         <div class="panel panel-default">
-            <!-- Default panel contents -->
             <div class="panel-heading">Todo List</div>
-
-            <!-- Table -->
             <table class="table todo-table">
-                <tr ng-repeat="todo in todos">
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="form-inline add-form">
+                            <input ng-model="newItem" ng-keypress="addKeypress($event)" class="form-control"/>
+                            <button ng-click="add()" type="button" class="btn btn-primary">Add</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat="todo in todos | orderBy:'id':true">
                     <td class="action-cell">
-                        <!--<span class="glyphicon glyphicon-ok"></span>-->
                         <input type="checkbox"
                                ng-model="todo.completed"
-                               ng-change="save(todo.id, todo)"
                                id="todo-{{$index}}"/>
                     </td>
                     <td cell-edit cell-edit-value="todo.item"></td>

@@ -6,6 +6,10 @@ body {
     background-image: url('background.jpg');
 }
 
+.add-form button {
+    margin-left: 1em;
+}
+
 .todo-table tr {
     height: 52px;
 }

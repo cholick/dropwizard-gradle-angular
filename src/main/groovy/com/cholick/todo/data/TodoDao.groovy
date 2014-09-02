@@ -33,7 +33,7 @@ class TodoDao {
 
     void delete(String userId, Integer id) {
         Todo todo = todos.get(id)
-        if(todo && todo.userId == userId.toLowerCase()) {
+        if (todo && todo.userId == userId.toLowerCase()) {
             todos.remove(id)
         }
     }

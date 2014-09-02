@@ -8,14 +8,16 @@ import org.junit.Rule
 import spock.lang.Specification
 
 import javax.validation.ValidationException
-import javax.ws.rs.core.Response
 
 class TodoResourceSpec extends Specification {
 
     TodoResource resource = new TodoResource(Mock(TodoDao))
 
     @Rule
-    ResourceTestRule resources = ResourceTestRule.builder().addResource(resource).build()
+    ResourceTestRule resources = ResourceTestRule
+            .builder()
+            .addResource(resource)
+            .build()
 
     def 'list with GET'() {
         given:

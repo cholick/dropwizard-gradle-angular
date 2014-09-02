@@ -15,6 +15,7 @@ import javax.ws.rs.Path
 import javax.ws.rs.PathParam
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
 
 @Path('/todo/{userId}')
 @Produces(MediaType.APPLICATION_JSON)
@@ -29,8 +30,9 @@ class TodoResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    Todo create(@PathParam('userId') String userId, @Valid Todo todo) {
-        return todoDao.create(userId, todo)
+    Response create(@PathParam('userId') String userId, @Valid Todo todo) {
+        Todo created = todoDao.create(userId, todo)
+        return Response.status(201).entity(created).build()
     }
 
     @GET

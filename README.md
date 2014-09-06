@@ -23,3 +23,6 @@
   * http://todomvc.com/architecture-examples/angularjs/#/active
 * http://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating
   * http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview
+
+##### Random
+* https://www.flickr.com/photos/monsieurlam/2645956083/

@@ -1,9 +1,14 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Todo List</div>
-            <table class="table todo-table">
+        <div class="panel panel-default todo-panel">
+            <div class="panel-heading">
+                <div class="share">
+                    <a href="/api/todo/{{user}}/view" target="_blank">Share</a>
+                </div>
+                <div><strong>Todo List</strong></div>
+            </div>
+            <table class="table">
                 <tr>
                     <td></td>
                     <td>
@@ -26,6 +31,5 @@
                 </tr>
             </table>
         </div>
-
     </div>
 </div>

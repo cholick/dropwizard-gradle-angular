@@ -57,7 +57,7 @@ class TodoResource {
     @Produces(MediaType.TEXT_HTML)
     @Path('/view')
     TodoView view(@PathParam('userId') String userId) {
-        return new TodoView(todoDao.list(userId))
+        return new TodoView(userId, todoDao.list(userId))
     }
 
 }

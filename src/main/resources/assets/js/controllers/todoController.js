@@ -5,19 +5,18 @@
         .controller('TodoController', TodoController);
 
     function TodoController($scope, $window, $location, todoResource) {
-        var user;
         $scope.todos = [];
 
         $scope.del = function (id) {
             _.remove($scope.todos, {id: id});
             todoResource.remove({
-                userId: user, id: id
+                userId: $scope.user, id: id
             });
         };
 
         $scope.add = function () {
             todoResource.save({
-                userId: user
+                userId: $scope.user
             }, {
                 item: $scope.newItem
             }, function (data) {
@@ -34,13 +33,13 @@
 
         function save(todo) {
             todoResource.update({
-                userId: user, id: todo.id
+                userId: $scope.user, id: todo.id
             }, todo);
         }
 
         function init() {
-            user = $location.search().user;
-            todoResource.get({userId: user}, function (data) {
+            $scope.user = $location.search().user;
+            todoResource.get({userId: $scope.user}, function (data) {
                 $scope.todos = data.data;
             });
         }

@@ -4,20 +4,20 @@
     angular.module('todoApp')
         .controller('TodoController', TodoController);
 
-    function TodoController($scope, todoResource) {
+    function TodoController($scope, $window, $location, todoResource) {
+        var user;
         $scope.todos = [];
 
         $scope.del = function (id) {
             _.remove($scope.todos, {id: id});
             todoResource.remove({
-                userId: 'matt@veryrealemail.com', id: id
+                userId: user, id: id
             });
         };
 
         $scope.add = function () {
-            console.log('-------------adding');
             todoResource.save({
-                userId: 'matt@veryrealemail.com'
+                userId: user
             }, {
                 item: $scope.newItem
             }, function (data) {
@@ -33,20 +33,19 @@
         };
 
         function save(todo) {
-            console.log('----------- Saving', todo);
             todoResource.update({
-                userId: 'matt@veryrealemail.com', id: todo.id
+                userId: user, id: todo.id
             }, todo);
         }
 
         function init() {
-            todoResource.get({userId: 'matt@veryrealemail.com'}, function (data) {
+            user = $location.search().user;
+            todoResource.get({userId: user}, function (data) {
                 $scope.todos = data.data;
             });
         }
 
         $scope.$watch('todos', function (newVal, oldVal) {
-            //todo: creating a new todo with length
             if (newVal && oldVal && oldVal.length) {
                 var hash = {};
                 _.map(oldVal, function (todo) {

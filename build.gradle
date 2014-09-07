@@ -1,5 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'application'
+apply plugin: 'project-report'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7

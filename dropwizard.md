@@ -3,6 +3,10 @@ class: center, middle
 # Dropwizard
 ### + Groovy & Gradle
 
+.footnote[
+[ github.com/cholick/dropwizard-gradle-angular ]( https://github.com/cholick/dropwizard-gradle-angular )
+]
+
 ---
 # The Plan
 
@@ -18,6 +22,10 @@ class: center, middle
   1. Views
 1. Additional Gradle
 
+.footnote[
+[ github.com/cholick/dropwizard-gradle-angular ]( https://github.com/cholick/dropwizard-gradle-angular )
+]
+
 ---
 # Dropwizard .float-right[![image](images/dropwizard-hat.png)]
 
@@ -27,9 +35,9 @@ class: center, middle
 java -jar app.jar server config.yaml
 ```
 
-???
-
-* Not based on heavy container - simple to deploy & monitor
+.footnote[
+[ github.com/cholick/dropwizard-gradle-angular ]( https://github.com/cholick/dropwizard-gradle-angular )
+]
 
 ---
 # Mature Libraries
@@ -69,7 +77,7 @@ Yes, I know about Grails's daemon
 ---
 # Code!
 
-### [github.com/cholick/dropwizard-gradle-angular](https://github.com/cholick/dropwizard-gradle-angular/)
+### [ github.com/cholick/dropwizard-gradle-angular ]( https://github.com/cholick/dropwizard-gradle-angular/ )
 
 .float-right[![image](images/octocat.png)]
 

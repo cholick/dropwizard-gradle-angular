@@ -46,4 +46,55 @@ class TodoResourceSpec extends Specification {
         response.data[1].completed
     }
 
+    def 'create with POST'() {
+        given:
+        Todo todo = new Todo(item: 'Read GTD', completed: false)
+
+        and:
+        1 * resource.todoDao.create('matt@veryrealemail.com', todo) >>
+                new Todo(id: 1, userId: 'matt@veryrealemail.com', item: 'Read GTD', completed: false)
+
+        when:
+        Todo response = resources.client()
+                .resource('/todo/matt@veryrealemail.com')
+                .type('application/json')
+                .post(Todo, todo)
+
+        then:
+        response
+        response.id == 1
+        response.item == 'Read GTD'
+    }
+
+    def 'update with PUT'() {
+        given:
+        Todo todo = new Todo(item: 'Check email', completed: false, id: 1)
+
+        and:
+        1 * resource.todoDao.update('matt@veryrealemail.com', 1, todo) >>
+                new Todo(id: 1, userId: 'matt@veryrealemail.com', item: 'Check email [server]', completed: false)
+
+        when:
+        Todo response = resources.client()
+                .resource('/todo/matt@veryrealemail.com/1')
+                .type('application/json')
+                .put(Todo, todo)
+
+        then:
+        response
+        response.id == 1
+        response.item == 'Check email [server]'
+    }
+
+    def 'remove with DELETE'() {
+        when:
+        resources.client()
+                .resource('/todo/matt@veryrealemail.com/1')
+                .type('application/json')
+                .delete()
+
+        then:
+        1 * resource.todoDao.delete('matt@veryrealemail.com', 1)
+    }
+
 }

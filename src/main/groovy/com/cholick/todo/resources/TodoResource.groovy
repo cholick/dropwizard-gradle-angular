@@ -4,6 +4,7 @@ import com.cholick.todo.data.TodoDao
 import com.cholick.todo.domain.Todo
 import com.google.inject.Inject
 
+import javax.validation.Valid
 import javax.ws.rs.Consumes
 import javax.ws.rs.DELETE
 import javax.ws.rs.GET
@@ -28,7 +29,7 @@ class TodoResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    Response create(@PathParam('userId') String userId, Todo todo) {
+    Response create(@PathParam('userId') String userId, @Valid Todo todo) {
         Todo created = todoDao.create(userId, todo)
         return Response.status(201).entity(created).build()
     }
@@ -41,7 +42,7 @@ class TodoResource {
     @PUT
     @Path('/{id}')
     @Consumes(MediaType.APPLICATION_JSON)
-    Todo update(@PathParam('id') Integer id, @PathParam('userId') String userId, Todo todo) {
+    Todo update(@PathParam('id') Integer id, @PathParam('userId') String userId, @Valid Todo todo) {
         return todoDao.update(userId, id, todo)
     }
 

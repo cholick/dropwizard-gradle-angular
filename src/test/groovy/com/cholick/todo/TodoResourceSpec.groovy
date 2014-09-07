@@ -7,6 +7,8 @@ import io.dropwizard.testing.junit.ResourceTestRule
 import org.junit.Rule
 import spock.lang.Specification
 
+import javax.validation.ValidationException
+
 class TodoResourceSpec extends Specification {
 
     TodoResource resource = new TodoResource(Mock(TodoDao))
@@ -66,6 +68,20 @@ class TodoResourceSpec extends Specification {
         response.item == 'Read GTD'
     }
 
+    def 'POST with invalid todo throws error'() {
+        given:
+        Todo todo = new Todo()
+
+        when:
+        resources.client()
+                .resource('/todo/matt@veryrealemail.com')
+                .type('application/json')
+                .post(Todo, todo)
+
+        then:
+        thrown(ValidationException)
+    }
+
     def 'update with PUT'() {
         given:
         Todo todo = new Todo(item: 'Check email', completed: false, id: 1)
@@ -84,6 +100,20 @@ class TodoResourceSpec extends Specification {
         response
         response.id == 1
         response.item == 'Check email [server]'
+    }
+
+    def 'PUT with invalid todo throws error'() {
+        given:
+        Todo todo = new Todo()
+
+        when:
+        resources.client()
+                .resource('/todo/matt@veryrealemail.com/1')
+                .type('application/json')
+                .put(Todo, todo)
+
+        then:
+        thrown(ValidationException)
     }
 
     def 'remove with DELETE'() {

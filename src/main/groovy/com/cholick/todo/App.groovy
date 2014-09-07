@@ -1,6 +1,8 @@
 package com.cholick.todo
 
 import com.cholick.todo.resources.TodoResource
+import com.google.inject.Guice
+import com.google.inject.Injector
 import io.dropwizard.Application
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
@@ -16,7 +18,11 @@ class App extends Application<AppConfiguration> {
 
     @Override
     void run(AppConfiguration configuration, Environment environment) throws Exception {
-        environment.jersey().register(new TodoResource())
+        Injector injector = Guice.createInjector()
+
+        environment.lifecycle().manage(injector.getInstance(Startup))
+
+        environment.jersey().register(injector.getInstance(TodoResource))
     }
 
 }

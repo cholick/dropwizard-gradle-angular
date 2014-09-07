@@ -1,26 +1,29 @@
 package com.cholick.todo.resources
 
+import com.cholick.todo.data.TodoDao
 import com.cholick.todo.domain.Todo
+import com.google.inject.Inject
 
 import javax.ws.rs.GET
 import javax.ws.rs.Path
+import javax.ws.rs.PathParam
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 
-@Path('/todo/')
+@Path('/todo/{userId}')
 @Produces(MediaType.APPLICATION_JSON)
 class TodoResource {
 
-    List<Todo> data = [
-            new Todo(item: 'Buy milk', completed: false),
-            new Todo(item: 'Mail mortgage payment', completed: false),
-            new Todo(item: 'Upload slides', completed: false),
-            new Todo(item: 'Mow lawn', completed: true)
-    ]
+    TodoDao todoDao
+
+    @Inject
+    TodoResource(TodoDao todoDao) {
+        this.todoDao = todoDao
+    }
 
     @GET
-    Map list() {
-        return [data: data]
+    Map list(@PathParam('userId') String userId) {
+        return [data: todoDao.list(userId)]
     }
 
 }

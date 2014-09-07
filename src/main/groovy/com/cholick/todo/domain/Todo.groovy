@@ -7,7 +7,15 @@ import groovy.transform.EqualsAndHashCode
 @EqualsAndHashCode
 class Todo {
 
+    Integer id
+
+    String userId
+
     String item
     Boolean completed = false
+
+    void setUserId(String userId) {
+        this.userId = userId?.toLowerCase()
+    }
 
 }

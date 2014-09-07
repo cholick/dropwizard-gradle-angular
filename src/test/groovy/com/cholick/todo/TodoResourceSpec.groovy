@@ -1,5 +1,6 @@
 package com.cholick.todo
 
+import com.cholick.todo.data.TodoDao
 import com.cholick.todo.domain.Todo
 import com.cholick.todo.resources.TodoResource
 import io.dropwizard.testing.junit.ResourceTestRule
@@ -8,7 +9,7 @@ import spock.lang.Specification
 
 class TodoResourceSpec extends Specification {
 
-    TodoResource resource = new TodoResource()
+    TodoResource resource = new TodoResource(Mock(TodoDao))
 
     @Rule
     ResourceTestRule resources = ResourceTestRule
@@ -18,14 +19,14 @@ class TodoResourceSpec extends Specification {
 
     def 'list with GET'() {
         given:
-        resource.data = [
-                new Todo(item: 'Buy milk', completed: false),
-                new Todo(item: 'Mow lawn', completed: true),
+        resource.todoDao.list('matt@veryrealemail.com') >> [
+                new Todo(id: 1, userId: 'matt@veryrealemail.com', item: 'Buy milk', completed: false),
+                new Todo(id: 2, userId: 'matt@veryrealemail.com', item: 'Mow lawn', completed: true),
         ]
 
         when:
         Map response = resources.client()
-                .resource("/todo/")
+                .resource("/todo/matt@veryrealemail.com")
                 .get(Map)
 
         then:

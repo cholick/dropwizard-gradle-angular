@@ -18,6 +18,7 @@ dependencies {
     compile 'com.google.inject:guice:3.0'
 
     compile 'io.dropwizard:dropwizard-core:0.7.1'
+    compile 'io.dropwizard:dropwizard-assets:0.7.1'
     //jersey-client needed due to http://issues.gradle.org/browse/GRADLE-2647
     compile 'com.sun.jersey:jersey-client:1.18'
 

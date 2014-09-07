@@ -2,7 +2,7 @@
 
 killport() {
 	local pid=`lsof  -i :$1 | grep LISTEN | awk '{print $2}'`
-	if [ -n $pid ]; then
+	if [ -n "$pid" ]; then
 		kill $pid
 	fi
 }

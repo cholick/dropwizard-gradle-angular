@@ -7,6 +7,7 @@ import io.dropwizard.Application
 import io.dropwizard.assets.AssetsBundle
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
+import io.dropwizard.views.ViewBundle
 
 class App extends Application<AppConfiguration> {
 
@@ -17,6 +18,7 @@ class App extends Application<AppConfiguration> {
     @Override
     void initialize(Bootstrap<AppConfiguration> bootstrap) {
         bootstrap.addBundle(new AssetsBundle('/assets/', '/'));
+        bootstrap.addBundle(new ViewBundle())
     }
 
     @Override

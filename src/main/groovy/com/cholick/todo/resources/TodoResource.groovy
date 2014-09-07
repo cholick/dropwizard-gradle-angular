@@ -2,6 +2,7 @@ package com.cholick.todo.resources
 
 import com.cholick.todo.data.TodoDao
 import com.cholick.todo.domain.Todo
+import com.cholick.todo.views.TodoView
 import com.google.inject.Inject
 
 import javax.validation.Valid
@@ -50,6 +51,13 @@ class TodoResource {
     @Path('/{id}')
     void delete(@PathParam('id') Integer id, @PathParam('userId') String userId) {
         todoDao.delete(userId, id)
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    @Path('/view')
+    TodoView view(@PathParam('userId') String userId) {
+        return new TodoView(userId, todoDao.list(userId))
     }
 
 }

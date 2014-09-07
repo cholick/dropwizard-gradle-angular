@@ -1,0 +1,46 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 200;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: #44a4dd;
+
+}
+
+.float-right {
+    float: right;
+
+}
+
+.contact a {
+    font-weight: 100;
+}
+
+.contact h3 {
+    margin: 10px
+}
+
+.remark-code, .remark-inline-code {
+    font-family: 'Ubuntu Mono';
+}
+
+li ol {
+    list-style-type: upper-roman;
+}
+
+.footnote {
+    position: absolute;
+    bottom: 3em;
+    right: 2em;
+    font-size: smaller;
+}
